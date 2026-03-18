@@ -1,16 +1,45 @@
-# React + Vite
+# java_UI (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend for the student management system.
 
-Currently, two official plugins are available:
+## Local run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Install dependencies:
 
-## React Compiler
+   npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Create environment file:
 
-## Expanding the ESLint configuration
+   Copy `.env.example` to `.env` and set:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+   VITE_API_BASE_URL=http://localhost:3001
+
+3. Start dev server:
+
+   npm run dev
+
+## Deploy to Vercel
+
+This app is in a subfolder, so set Vercel Root Directory to:
+
+`src/com/Distributed_GUI/java_UI`
+
+### Vercel project settings
+
+- Framework Preset: Vite
+- Build Command: npm run build
+- Output Directory: dist
+- Install Command: npm install
+
+### Environment variable (required)
+
+Add in Vercel Project Settings -> Environment Variables:
+
+- Name: `VITE_API_BASE_URL`
+- Value: your deployed backend URL (for example `https://your-api.example.com`)
+
+After setting this variable, redeploy so the frontend builds with the correct API URL.
+
+## Important note
+
+If your backend is still running only on localhost, the deployed Vercel UI cannot reach it. You must deploy your backend to a public URL and allow CORS from your Vercel domain.

@@ -2,6 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import "./ap.css";
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+
 function App() {
   const [message, setMessage] = useState("");
   const [reply, setReply] = useState("");
@@ -17,7 +20,7 @@ function App() {
 
   // ✅ Send to Java socket
   const sendMessage = async () => {
-    const res = await axios.post("http://localhost:3001/send", {
+    const res = await axios.post(`${API_BASE_URL}/send`, {
       msg: message,
     });
     setReply(res.data.reply);
@@ -25,13 +28,13 @@ function App() {
 
   // ✅ Add student
   const addStudent = async () => {
-    await axios.post("http://localhost:3001/students", student);
+    await axios.post(`${API_BASE_URL}/students`, student);
     alert("Student added");
   };
 
   // ✅ Search age > 20
   const searchAge = async () => {
-    const res = await axios.get("http://localhost:3001/students/age/above/20");
+    const res = await axios.get(`${API_BASE_URL}/students/age/above/20`);
     setStudents(res.data);
   };
 
