@@ -44,7 +44,7 @@ app.post("/students", (req, res) => {
   const { name, age, sex, grade } = req.body;
 
   const sql =
-    "INSERT INTO students (name, age, sex, grade) VALUES (?, ?, ?, ?)";
+    "INSERT INTO Student_information (name, age, sex, grade) VALUES (?, ?, ?, ?)";
   db.query(sql, [name, age, sex, grade], (err, result) => {
     if (err) return res.status(500).json(err);
     res.json({ message: "Student added" });
@@ -54,7 +54,7 @@ app.post("/students", (req, res) => {
 // ✅ Search by sex
 app.get("/students/sex/:sex", (req, res) => {
   db.query(
-    "SELECT * FROM students WHERE sex = ?",
+    "SELECT * FROM Student_information WHERE sex = ?",
     [req.params.sex],
     (err, result) => res.json(result),
   );
@@ -63,7 +63,7 @@ app.get("/students/sex/:sex", (req, res) => {
 // ✅ Age > value
 app.get("/students/age/above/:age", (req, res) => {
   db.query(
-    "SELECT * FROM students WHERE age > ?",
+    "SELECT * FROM Student_information WHERE age > ?",
     [req.params.age],
     (err, result) => res.json(result),
   );
@@ -72,7 +72,7 @@ app.get("/students/age/above/:age", (req, res) => {
 // ✅ Grade filter
 app.get("/students/grade/:grade", (req, res) => {
   db.query(
-    "SELECT * FROM students WHERE grade = ?",
+    "SELECT * FROM Student_information WHERE grade = ?",
     [req.params.grade],
     (err, result) => res.json(result),
   );
